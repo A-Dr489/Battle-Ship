@@ -25,9 +25,23 @@ body {
 
 .enemyBoard > div {
     border: 1px solid tomato;
+    cursor: pointer;
+    text-align: center;
 }
 
 .playerBoard > div {
     border: 1px solid rgb(83, 243, 94);
-    cursor: pointer;
+    text-align: center;
+}
+
+
+/* here we make classes for the ships */
+
+.PlayerShips {
+    background-color: green;
+    text-align: center;
+}
+
+.EnemyShip {
+    text-align: center;
 }
