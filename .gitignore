@@ -1,0 +1,12 @@
+#ignore the dist folder because it will be created when execute
+dist/
+
+#ignore node_modules because the same reason
+node_modules/
+
+#ignore enviorment variables files which usually store the API key in it
+.env
+
+
+.DS_Store
+Thumbs.db
