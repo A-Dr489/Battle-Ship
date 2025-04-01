@@ -1,35 +1,45 @@
+import Player from "./Player.js";
+
 export default class GameBoard{
-    #isPlayer;
+    playerClass;
     #daddy;
+    playerGrid;
     #playerArr = [];
+    score = 0;
 
     constructor(isPlayer) {
-        this.#isPlayer = isPlayer;
         this.#daddy = document.getElementById("daddy");
+        this.playerClass = new Player(isPlayer);
+        this.playerGrid = document.createElement("div");
+    }
+
+    getPlayerArr() {
+        return this.#playerArr;
     }
 
     render() {
-        let playerGrid = document.createElement("div");
-        this.#isPlayer ? playerGrid.classList.add("playerBoard") : playerGrid.classList.add("enemyBoard");
-        this.#daddy.appendChild(playerGrid);
+        this.playerClass.isPlayer ? this.playerGrid.classList.add("playerBoard") : this.playerGrid.classList.add("enemyBoard");
+        this.#daddy.appendChild(this.playerGrid);
         for(let i = 0; i < 100; i++) {
             let ez = document.createElement("div");
-            playerGrid.appendChild(ez);
+            this.playerGrid.appendChild(ez);
             this.#playerArr.push(ez)
         }
-        if(this.#isPlayer) {
+        if(this.playerClass.isPlayer) {
             let vs = document.createElement("h1");
             this.#daddy.appendChild(vs);
             vs.textContent = "VS";
             let name = document.createElement("h1");
-            playerGrid.appendChild(name);
+            this.playerGrid.appendChild(name);
             name.textContent = "Player";
             name.style.marginLeft = "125px";
+            this.playerClass.generateShip(this.#playerArr);
         } else {
             let enemy = document.createElement("h1");
-            playerGrid.appendChild(enemy);
+            this.playerGrid.appendChild(enemy);
             enemy.textContent = "Enemy";
             enemy.style.marginLeft = "125px";
+            this.playerClass.generateShip(this.#playerArr);
         }
     }
 }
